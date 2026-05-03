@@ -1,15 +1,22 @@
 const moves = [[-2, -1], [-2, 1], [-1, -2], [-1, 2], [1, -2], [1, 2], [2, -1], [2, 1]];
 
 function knightMoves(start, end) {
-  if (start[0] < 0 || start[0] > 7 || start[1] < 0 || start[1] > 7) return 'Invalid start position';
-  if (end[0] < 0 || end[0] > 7 || end[1] < 0 || end[1] > 7) return 'Invalid end position';
 
-  const queue = [start, end];
+}
 
-  if (start[0] === end[0] && start[1] === end[1]) return `Already at position: ${queue}`;
+function getPossibleMoves(position) {
+  if (!position) return;
 
-  while (queue.length > 0) {
+  const possibleMoves = [];
 
+  for (const move of moves) {
+    const newPosition = [position[0] + move[0], position[1] + move[1]];
+
+    if (newPosition[0] >= 0 && newPosition[0] <= 7 && newPosition[1] >= 0 && newPosition[1] <= 7) {
+      possibleMoves.push(newPosition);
+    }
   }
+
+  return possibleMoves;
 }
 
